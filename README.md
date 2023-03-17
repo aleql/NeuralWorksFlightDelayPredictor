@@ -7,11 +7,11 @@ Down below the answers to the questions asked will be provided:
 1.- The model chosen for the problem was the XGBoost, mainly due to the imbalanced nature of the data. This machine learning model displays resilience when facing data with these properties. It is also worth pointing out that in the literature, this model has been used to solve problems of similar parameters, where a XGBoost model with  the Over-Sampling technique, randomised SMOTE obtained a validation accuracy of 85.73% which is. [https://ieeexplore.ieee.org/document/8876970]
 
 2.- The following changes were tested on the file to-expose.ipynb:
-Optimization of hyperparameters using CV Matrix.
-Downsampling on majority class to half, and to the same size of minority class.
-Upsampling of minority class.
-Downsampling of the majority class using SMOTE.
-Of these methods, the last one obtained better results, with an AUC SCORE of 0.663. Now, this result still has room for improvement, as the amount of false positives is still significant.
+  - Optimization of hyperparameters using CV Matrix.
+  - Downsampling on majority class to half, and to the same size of minority class.
+  - Upsampling of minority class.
+  - Downsampling of the majority class using SMOTE.
+Of these methods, the last one obtained better results, with an AUC SCORE of 0.663. Now, this result still has room for improvement, as the amount of false positives is still significant. Now all these methods and their results are available on the last section of the to-expose.ipynb notebook.
 
 3.- The model with Downsampling SMOTE was serialised on the file xgboost_smote.joblib, and a Flask Rest API was implemented. This API receives requests on the /PredictFlightDelay path, where it expects a POST request with content-type: application/json. The Json expected on the body consists of an array of Json objects, having each object the format and data of a row of the file dataset_SCL.csv, The array can be of any size, and more than one object can be sent at a time. The api answers with code 200 if the request was correct, returning a Json object with an array property, which contains either a 0 or a 1 depending on the prediction of the model
 
@@ -56,7 +56,7 @@ Example answer:
 wrk -t12 -c400 -d30s --latency http://127.0.0.1:8080
 ```
 The output is displayed on the file output.txt
-Now, the application was tested out in local, in debug mode, as deploying the application to a server for the testing was beyond the scope of the challenge. For this, the performance can be greatly improved by deploying the application to any of the two cloud servers mentioned on the previous section, and also configuring gunicorn for better management of the server resources.
+The application was tested out in local, in debug mode, as deploying the application to a server for the testing was beyond the scope of the challenge. For this, the performance can be greatly improved by deploying the application to any of the two cloud servers mentioned on the previous section, and also configuring gunicorn for better management of the server resources.
 
 
 
